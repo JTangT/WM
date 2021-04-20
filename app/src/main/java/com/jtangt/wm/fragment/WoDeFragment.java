@@ -26,7 +26,7 @@ public class WoDeFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState){
         CircleImageView icon;
         icon= (CircleImageView) view.findViewById(R.id.circleImageView);
-        icon.setImageResource(R.mipmap.dingdai_x);
+        icon.setImageResource(R.mipmap.touxiang);
 
     }
 
