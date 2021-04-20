@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:background="#ff0000">
+        <ImageView
+            android:id="@+id/imgre"
+            android:layout_width="35sp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/jiantou_h"
+            android:scaleX = "-1"
+            />
+        <TextView
+            android:id="@+id/top_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="订单详细"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+    </LinearLayout>
+</LinearLayout>
