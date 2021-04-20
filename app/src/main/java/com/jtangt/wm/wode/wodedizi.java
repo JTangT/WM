@@ -2,11 +2,13 @@ package com.jtangt.wm.wode;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.jtangt.wm.R;
+
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class wodedizi extends AppCompatActivity {
+public class wodedizi extends Activity {
     ImageView re;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
