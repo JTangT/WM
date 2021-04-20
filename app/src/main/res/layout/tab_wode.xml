@@ -70,6 +70,7 @@
                 android:text="我的地址"
                 android:gravity="center_vertical"/>
             <ImageView
+                android:id="@+id/wddz"
                 android:layout_width="35sp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/jiantou_h"
@@ -91,6 +92,7 @@
                 android:text="我的收藏"
                 android:gravity="center_vertical"/>
             <ImageView
+                android:id="@+id/wdsc"
                 android:layout_width="35sp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/jiantou_h"
@@ -112,6 +114,7 @@
                 android:text="我的评价"
                 android:gravity="center_vertical"/>
             <ImageView
+                android:id="@+id/wdpj"
                 android:layout_width="35sp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/jiantou_h"
@@ -133,6 +136,7 @@
             android:text="关于"
             android:gravity="center_vertical"/>
         <ImageView
+            android:id="@+id/gy"
             android:layout_width="35sp"
             android:layout_height="match_parent"
             android:src="@mipmap/jiantou_h"

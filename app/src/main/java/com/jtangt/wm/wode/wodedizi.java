@@ -1,33 +1,24 @@
-package com.jtangt.wm;
-
-import android.app.Activity;
-import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+package com.jtangt.wm.wode;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
+import com.jtangt.wm.R;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class gerenxinxi extends Activity {
+public class wodedizi extends AppCompatActivity {
     ImageView re;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gerenxinxi);
-
+        setContentView(R.layout.activity_wodedizi);
         init();
     }
-    private void init(){
+    public void init(){
         re=findViewById(R.id.imgre);
         re.setOnClickListener(clickListener);
-        //finish();
-
     }
+
     View.OnClickListener clickListener =new View.OnClickListener() {
         @Override
         public void onClick(View v) {

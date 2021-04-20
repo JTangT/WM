@@ -7,13 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 
 import com.jtangt.wm.R;
 import com.jtangt.wm.circleimageview.CircleImageView;
-import com.jtangt.wm.gerenxinxi;
+import com.jtangt.wm.wode.gerenxinxi;
+import com.jtangt.wm.wode.wodedizi;
 
 public class WoDeFragment extends Fragment {
     public WoDeFragment() {
@@ -33,7 +33,16 @@ public class WoDeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.tab_wode,container,false);
         ImageView imggrxx=view.findViewById(R.id.imggrxx);
+        ImageView imgwddz=view.findViewById(R.id.wddz);
+        ImageView imgwdsc=view.findViewById(R.id.wdsc);
+        ImageView imgwdpj=view.findViewById(R.id.wdpj);
+        ImageView imggy=view.findViewById(R.id.gy);
+
         imggrxx.setOnClickListener(clickListener);
+        imgwddz.setOnClickListener(clickListener);
+        imgwdsc.setOnClickListener(clickListener);
+        imgwdpj.setOnClickListener(clickListener);
+        imggy.setOnClickListener(clickListener);
 
         return view;
     }
@@ -44,6 +53,15 @@ public class WoDeFragment extends Fragment {
             switch (v.getId()){
                 case R.id.imggrxx:
                     startActivity(new Intent(getActivity(), gerenxinxi.class));
+                    break;
+                case R.id.wddz:
+                    startActivity(new Intent(getActivity(), wodedizi.class));
+                    break;
+                case R.id.wdsc:
+                    break;
+                case R.id.wdpj:
+                    break;
+                case R.id.gy:
                     break;
             }
         }

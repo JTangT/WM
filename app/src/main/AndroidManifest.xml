@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WM">
+        <activity android:name=".wode.wodedizi"></activity>
         <activity
-            android:name=".gerenxinxi"
+            android:name=".wode.gerenxinxi"
             android:label="@string/title_activity_gerenxinxi"
-            android:theme="@style/Theme.WM.NoActionBar"></activity>
+            android:theme="@style/Theme.WM.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
