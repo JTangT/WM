@@ -20,7 +20,7 @@
             android:id="@+id/top_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="我的收藏"
+            android:text="关于"
             android:textColor="#ffffff"
             android:textSize="30sp"
             android:gravity="center_horizontal"/>

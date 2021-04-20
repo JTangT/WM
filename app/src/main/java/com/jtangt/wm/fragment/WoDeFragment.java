@@ -13,7 +13,10 @@ import androidx.annotation.Nullable;
 import com.jtangt.wm.R;
 import com.jtangt.wm.circleimageview.CircleImageView;
 import com.jtangt.wm.wode.gerenxinxi;
+import com.jtangt.wm.wode.guanyu;
 import com.jtangt.wm.wode.wodedizi;
+import com.jtangt.wm.wode.wodepinjia;
+import com.jtangt.wm.wode.wodeshoucang;
 
 public class WoDeFragment extends Fragment {
     public WoDeFragment() {
@@ -58,10 +61,13 @@ public class WoDeFragment extends Fragment {
                     startActivity(new Intent(getActivity(), wodedizi.class));
                     break;
                 case R.id.wdsc:
+                    startActivity(new Intent(getActivity(), wodeshoucang.class));
                     break;
                 case R.id.wdpj:
+                    startActivity(new Intent(getActivity(), wodepinjia.class));
                     break;
                 case R.id.gy:
+                    startActivity(new Intent(getActivity(), guanyu.class));
                     break;
             }
         }

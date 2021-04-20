@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WM">
-        <activity android:name=".wode.wodeshoucang"></activity>
+        <activity android:name=".wode.guanyu"></activity>
+        <activity android:name=".wode.wodepinjia" />
+        <activity android:name=".wode.wodeshoucang" />
         <activity android:name=".wode.wodedizi" />
         <activity
             android:name=".wode.gerenxinxi"
