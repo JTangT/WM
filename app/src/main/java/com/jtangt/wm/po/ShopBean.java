@@ -4,8 +4,8 @@ public class ShopBean {
     private int id;//编号
     private String shopName;//名称
     private int saleNum;//出售数量
-    private int offerprice;
-    private int distributioncost;
+    private int offerprice;//配送费
+    private int distributioncost;//
     private String adNotice;
     private String welfare1;
     private String welfare2;
