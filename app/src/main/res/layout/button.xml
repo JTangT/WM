@@ -13,13 +13,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content">
         <ImageView
+            android:layout_marginTop="15sp"
             android:id="@+id/imgZhuye"
             android:src="@mipmap/zhuye"
             android:scrollbarSize="1px"
-            android:layout_width="50sp"
-            android:layout_height="50sp"/>
+            android:layout_width="30sp"
+            android:layout_height="30sp"/>
         <TextView
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="主页"/>
@@ -32,13 +33,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content">
         <ImageView
+            android:layout_marginTop="15sp"
             android:id="@+id/imgDaina"
             android:src="@mipmap/daina"
             android:scrollbarSize="1px"
-            android:layout_width="50sp"
-            android:layout_height="50sp"/>
+            android:layout_width="30sp"
+            android:layout_height="30sp"/>
         <TextView
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="代拿"/>
@@ -51,13 +53,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content">
         <ImageView
+            android:layout_marginTop="15sp"
             android:id="@+id/imgDingdai"
             android:src="@mipmap/dingdai"
             android:scrollbarSize="1px"
-            android:layout_width="50sp"
-            android:layout_height="50sp"/>
+            android:layout_width="30sp"
+            android:layout_height="30sp"/>
         <TextView
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="订单"/>
@@ -70,13 +73,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content">
         <ImageView
+            android:layout_marginTop="15sp"
             android:id="@+id/imgWode"
             android:src="@mipmap/wode"
             android:scrollbarSize="1px"
-            android:layout_width="50sp"
-            android:layout_height="50sp"/>
+            android:layout_width="30sp"
+            android:layout_height="30sp"/>
         <TextView
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="我的"/>
