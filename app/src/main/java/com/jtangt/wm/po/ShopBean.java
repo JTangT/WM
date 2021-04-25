@@ -1,6 +1,16 @@
 package com.jtangt.wm.po;
 
 public class ShopBean {
+    private int id;//编号
+    private String shopName;//名称
+    private int saleNum;//出售数量
+    private int offerprice;
+    private int distributioncost;
+    private String adNotice;
+    private String welfare1;
+    private String welfare2;
+    private String time;
+
     public int getId() {
         return id;
     }
@@ -72,15 +82,5 @@ public class ShopBean {
     public void setTime(String time) {
         this.time = time;
     }
-
-    private int id;
-    private String shopName;
-    private int saleNum;
-    private int offerprice;
-    private int distributioncost;
-    private String adNotice;
-    private String welfare1;
-    private String welfare2;
-    private String time;
 
 }
