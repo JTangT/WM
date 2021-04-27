@@ -5,11 +5,25 @@ public class ShopBean {
     private String shopName;//名称
     private int saleNum;//出售数量
     private int offerprice;//配送费
-    private int distributioncost;//
-    private String adNotice;
-    private String welfare1;
-    private String welfare2;
-    private String time;
+    private int startprice;//起送费
+    private String welfare1;//消息1 JSON格式
+    private String welfare2;//消息2 JSON格式
+    public String shopIcon;//店铺图片
+    public String adNotice;//广告信息
+    private int time;//预计时间
+
+    public String getAdNotice(){return adNotice;}
+    public void setAdNotice(String adNotice){this.adNotice=adNotice;}
+
+    public String getShopIcon() {
+        return shopIcon;
+    }
+
+    public void setShopIcon(String shopIcon) {
+        this.shopIcon = shopIcon;
+    }
+
+
 
     public int getId() {
         return id;
@@ -43,20 +57,12 @@ public class ShopBean {
         this.offerprice = offerprice;
     }
 
-    public int getDistributioncost() {
-        return distributioncost;
+    public int getStartprice() {
+        return startprice;
     }
 
-    public void setDistributioncost(int distributioncost) {
-        this.distributioncost = distributioncost;
-    }
-
-    public String getAdNotice() {
-        return adNotice;
-    }
-
-    public void setAdNotice(String adNotice) {
-        this.adNotice = adNotice;
+    public void setStartprice(int startprice) {
+        this.startprice = startprice;
     }
 
     public String getWelfare1() {
@@ -75,12 +81,7 @@ public class ShopBean {
         this.welfare2 = welfare2;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
+    public int getTime(){return time;}
+    public void setTime(int time){this.time=time;}
 
 }

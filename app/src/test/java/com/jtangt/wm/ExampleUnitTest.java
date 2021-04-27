@@ -1,8 +1,11 @@
 package com.jtangt.wm;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.jtangt.wm.po.ShopBean;
+import com.jtangt.wm.utils.base64ToPicture;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,24 +26,4 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    @Test
-    public void jsontest(){
-        String json="[{\"1\":1},{\"1\":2}]";
-        List<ShopBean> shopInfos = null;
-        JSONArray j=null;
-        try {
-            j=new JSONArray(json);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        j.length();
-
-        try {
-            JSONObject t= (JSONObject) j.get(0);
-            Log.e( "getShopInfos: ", t.toString());
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 }
