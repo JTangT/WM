@@ -43,6 +43,7 @@ public class ZhuYeFragment extends Fragment {
     //轮播图
     private void initData() {
 
+
         image.add(R.drawable.rbt1);
         image.add(R.drawable.rbt2);
         title.add("缤纷肯德基");
@@ -68,7 +69,6 @@ public class ZhuYeFragment extends Fragment {
         banner.setDelayTime(3000);
 
         banner.setOnBannerListener(this::OnBannerClick);
-
         banner.start();
     }
     public void OnBannerClick(int position) {
@@ -84,15 +84,21 @@ public class ZhuYeFragment extends Fragment {
     }
 
 
-    //店铺
+
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            initlist((String)msg.obj);
+            switch (msg.what){
+                case 1:
+                    initlist((String)msg.obj);
+                    break;
+            }
+
         }
     };
 
+    //店铺
     public void getjson(){
         new Thread(new Runnable() {
             @Override
@@ -106,6 +112,7 @@ public class ZhuYeFragment extends Fragment {
                 }
                 Message msg = handler.obtainMessage();
                 msg.obj = json;
+                msg.what=1;
                 handler.sendMessage(msg);
             }
         }).start();
@@ -119,8 +126,8 @@ public class ZhuYeFragment extends Fragment {
         List<ShopBean> shopBeans= JSON.parseArray(json,ShopBean.class);
         for (ShopBean s :shopBeans) {
             HashMap<String,Object> map=new HashMap<>();
-            //map.put("shop_icon",base64ToPicture.sendImage(s.getShopIcon()));
-            map.put("shop_icon",R.drawable.shop1);
+            map.put("shop_icon",base64ToPicture.sendImage(s.getShopIconbase64()));
+            //map.put("shop_icon",R.drawable.shop1);
             map.put("shop_name",s.getShopName());
             map.put("sale_num",s.getSaleNum());
             map.put("cost",s.getStartprice()+s.getOfferprice());
@@ -138,17 +145,17 @@ public class ZhuYeFragment extends Fragment {
         int to[]={R.id.iv_shop_icon,R.id.tv_shop_name,R.id.tv_sale_num,R.id.tv_cost,R.id.tv_adNotice,R.id.tv_welfare1,R.id.tv_welfare2,R.id.tv_time};
 
         SimpleAdapter simpleAdapter=new SimpleAdapter(getActivity(),arrayList,R.layout.yihang,from,to);
-//        simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
-//            public boolean setViewValue(View view, Object data,
-//                                        String textRepresentation) {
-//                if (view instanceof ImageView && data instanceof Bitmap) {
-//                    ImageView image = (ImageView) view;
-//                    image.setImageBitmap((Bitmap) data);
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
+        simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
+            public boolean setViewValue(View view, Object data,
+                                        String textRepresentation) {
+                if (view instanceof ImageView && data instanceof Bitmap) {
+                    ImageView image = (ImageView) view;
+                    image.setImageBitmap((Bitmap) data);
+                    return true;
+                }
+                return false;
+            }
+        });
         ListView listView=view.findViewById(R.id.zhuye_list);
         ScrollView sv = (ScrollView) view.findViewById(R.id.zhuye_scroll);
         sv.smoothScrollTo(0, 0);

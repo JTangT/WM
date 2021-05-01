@@ -8,21 +8,23 @@ public class ShopBean {
     private int startprice;//起送费
     private String welfare1;//消息1 JSON格式
     private String welfare2;//消息2 JSON格式
-    public String shopIcon;//店铺图片
+    public int shopIcon;//店铺图片
+    public String shopIconbase64;//店铺图片base64
     public String adNotice;//广告信息
     private int time;//预计时间
 
     public String getAdNotice(){return adNotice;}
     public void setAdNotice(String adNotice){this.adNotice=adNotice;}
 
-    public String getShopIcon() {
+    public int getShopIcon() {
         return shopIcon;
     }
 
-    public void setShopIcon(String shopIcon) {
+    public void setShopIcon(int shopIcon) {
         this.shopIcon = shopIcon;
     }
-
+    public String getShopIconbase64(){return shopIconbase64;}
+    public void  setShopIconbase64(String shopIconbase64){this.shopIconbase64=shopIconbase64;}
 
 
     public int getId() {
