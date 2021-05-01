@@ -5,17 +5,13 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.jtangt.wm.circleimageview.CircleImageView;
 import com.jtangt.wm.fragment.DaiNaFragment;
 import com.jtangt.wm.fragment.DingDaiFragment;
 import com.jtangt.wm.fragment.WoDeFragment;

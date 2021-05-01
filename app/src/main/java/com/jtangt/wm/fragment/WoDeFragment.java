@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 
 import com.jtangt.wm.R;
-import com.jtangt.wm.circleimageview.CircleImageView;
+import com.jtangt.wm.ui.CircleImageView;
 import com.jtangt.wm.wode.gerenxinxi;
 import com.jtangt.wm.wode.guanyu;
 import com.jtangt.wm.wode.wodedizi;

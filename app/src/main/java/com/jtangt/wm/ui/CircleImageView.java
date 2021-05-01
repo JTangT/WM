@@ -1,4 +1,4 @@
-package com.jtangt.wm.circleimageview;
+package com.jtangt.wm.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;

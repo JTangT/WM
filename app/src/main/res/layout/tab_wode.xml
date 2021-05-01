@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#ff0000">
-        <com.jtangt.wm.circleimageview.CircleImageView
+        <com.jtangt.wm.ui.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/circleImageView"
             android:layout_weight="1"
