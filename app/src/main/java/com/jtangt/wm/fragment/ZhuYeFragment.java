@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.jtangt.wm.R;
+import com.jtangt.wm.po.Message_Post;
 import com.jtangt.wm.po.ShopBean;
 import com.jtangt.wm.utils.HttpUtils;
 import com.youth.banner.Banner;
@@ -42,7 +43,25 @@ public class ZhuYeFragment extends Fragment {
 
     //轮播图
     private void initData() {
-
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                String json = null;
+//                try {
+//                    HttpUtils httpUtils = new HttpUtils();
+//                    Message_Post message_post=new Message_Post();
+//                    message_post.setType("shop/getAllShop");
+//                    message_post.setMessage("{}");
+//                    json = httpUtils.getJsonContent(message_post);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                Message msg = handler.obtainMessage();
+//                msg.obj = json;
+//                msg.what=2;
+//                handler.sendMessage(msg);
+//            }
+//        }).start();
 
         image.add(R.drawable.rbt1);
         image.add(R.drawable.rbt2);
@@ -106,7 +125,10 @@ public class ZhuYeFragment extends Fragment {
                 String json = null;
                 try {
                     HttpUtils httpUtils = new HttpUtils();
-                    json = httpUtils.getJsonContent("http://192.168.2.239:10003/shop/getAllShop");
+                    Message_Post message_post=new Message_Post();
+                    message_post.setType("shop/getAllShop");
+                    message_post.setMessage("{}");
+                    json = httpUtils.getJsonContent(message_post);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
