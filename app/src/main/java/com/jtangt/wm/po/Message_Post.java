@@ -2,6 +2,7 @@ package com.jtangt.wm.po;
 
 public class Message_Post {
     private String type;
+    private String message;
 
     public String getType() {
         return type;
@@ -19,6 +20,6 @@ public class Message_Post {
         this.message = message;
     }
 
-    private String message;
+
 
 }

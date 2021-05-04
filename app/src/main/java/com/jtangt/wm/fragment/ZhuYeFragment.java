@@ -31,37 +31,39 @@ import com.youth.banner.loader.ImageLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import android.os.Handler;
 
 import com.jtangt.wm.utils.base64ToPicture;
 
 public class ZhuYeFragment extends Fragment {
     private Banner banner;
-    private List<Integer> image=new ArrayList<>();
+    private List<String> image=new ArrayList<>();
     private List<String> title=new ArrayList<>();
     private View view;
 
     //轮播图
     private void initData() {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                String json = null;
-//                try {
-//                    HttpUtils httpUtils = new HttpUtils();
-//                    Message_Post message_post=new Message_Post();
-//                    message_post.setType("shop/getAllShop");
-//                    message_post.setMessage("{}");
-//                    json = httpUtils.getJsonContent(message_post);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                Message msg = handler.obtainMessage();
-//                msg.obj = json;
-//                msg.what=2;
-//                handler.sendMessage(msg);
-//            }
-//        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String json = null;
+                try {
+                    HttpUtils httpUtils = new HttpUtils();
+                    Message_Post message_post=new Message_Post();
+                    message_post.setType("shop/getAllShop");
+                    message_post.setMessage("{}");
+                    json = httpUtils.getJsonContent(message_post);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Message msg = handler.obtainMessage();
+                msg.obj = json;
+                msg.what=2;
+                handler.sendMessage(msg);
+            }
+        }).start();
 
         image.add(R.drawable.rbt1);
         image.add(R.drawable.rbt2);
@@ -98,7 +100,6 @@ public class ZhuYeFragment extends Fragment {
         public void displayImage(Context context, Object path, ImageView imageView) {
 
             Glide.with(context).load(path).into(imageView);
-
         }
     }
 
@@ -126,9 +127,10 @@ public class ZhuYeFragment extends Fragment {
                 try {
                     HttpUtils httpUtils = new HttpUtils();
                     Message_Post message_post=new Message_Post();
-                    message_post.setType("shop/getAllShop");
-                    message_post.setMessage("{}");
+                    message_post.setType("shop_getAllShop");
+                    message_post.setMessage("{1111}");
                     json = httpUtils.getJsonContent(message_post);
+                    //System.out.println(json);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -151,12 +153,26 @@ public class ZhuYeFragment extends Fragment {
             map.put("shop_icon",base64ToPicture.sendImage(s.getShopIconbase64()));
             //map.put("shop_icon",R.drawable.shop1);
             map.put("shop_name",s.getShopName());
-            map.put("sale_num",s.getSaleNum());
-            map.put("cost",s.getStartprice()+s.getOfferprice());
+            map.put("sale_num","月售："+s.getSaleNum());
+            map.put("cost","起送从¥"+s.getStartprice()+" 配送¥"+s.getOfferprice());
             map.put("adNotice",s.getAdNotice());
-            map.put("welfare1",s.getWelfare1());
-            map.put("welfare2",s.getWelfare2());
-            map.put("time",s.getTime());
+
+            HashMap<String,String> w1 = JSON.parseObject(s.getWelfare1(), HashMap.class);
+            String we1="";
+            for(Map.Entry<String, String> entry : w1.entrySet()){
+                String mapKey = entry.getKey();
+                String mapValue = entry.getValue();
+                if(!we1.equals(""))
+                    we1+="，";
+                we1+="满"+mapKey+"减"+mapValue;
+
+            }
+            map.put("welfare1",we1);
+            if(s.getWelfare2().equals("0"))
+                map.put("welfare2","");
+            else
+                map.put("welfare2","新用户减"+s.getWelfare2()+"元");
+            map.put("time","预计送达时间："+s.getTime()+"分钟");
 
 
             arrayList.add(map);
