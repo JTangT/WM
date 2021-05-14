@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -39,31 +40,31 @@ import com.jtangt.wm.utils.base64ToPicture;
 
 public class ZhuYeFragment extends Fragment {
     private Banner banner;
-    private List<String> image=new ArrayList<>();
+    private List<Integer> image=new ArrayList<>();
     private List<String> title=new ArrayList<>();
     private View view;
 
     //轮播图
     private void initData() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String json = null;
-                try {
-                    HttpUtils httpUtils = new HttpUtils();
-                    Message_Post message_post=new Message_Post();
-                    message_post.setType("shop/getAllShop");
-                    message_post.setMessage("{}");
-                    json = httpUtils.getJsonContent(message_post);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                Message msg = handler.obtainMessage();
-                msg.obj = json;
-                msg.what=2;
-                handler.sendMessage(msg);
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                String json = null;
+//                try {
+//                    HttpUtils httpUtils = new HttpUtils();
+//                    Message_Post message_post=new Message_Post();
+//                    message_post.setType("shop/getAllShop");
+//                    message_post.setMessage("{}");
+//                    json = httpUtils.getJsonContent(message_post);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                Message msg = handler.obtainMessage();
+//                msg.obj = json;
+//                msg.what=2;
+//                handler.sendMessage(msg);
+//            }
+//        }).start();
 
         image.add(R.drawable.rbt1);
         image.add(R.drawable.rbt2);
@@ -111,6 +112,10 @@ public class ZhuYeFragment extends Fragment {
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
+                    //隐藏加载
+                    ProgressBar progressBar=view.findViewById(R.id.progressbar);
+                    progressBar.setVisibility(View.GONE);
+
                     initlist((String)msg.obj);
                     break;
             }
@@ -140,6 +145,9 @@ public class ZhuYeFragment extends Fragment {
                 handler.sendMessage(msg);
             }
         }).start();
+
+
+
     }
 
     public void initlist(String json){

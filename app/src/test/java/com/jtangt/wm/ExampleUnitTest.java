@@ -26,4 +26,11 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
+    @Test
+    public void s(){
+        String s="4444432";
+        s=s.substring(0,s.length()-2);
+        System.out.println(s);
+    }
+
 }
