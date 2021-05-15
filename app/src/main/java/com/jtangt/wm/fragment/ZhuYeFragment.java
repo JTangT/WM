@@ -2,6 +2,7 @@ package com.jtangt.wm.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -10,16 +11,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.jtangt.wm.R;
+import com.jtangt.wm.Shop_detail;
 import com.jtangt.wm.po.Message_Post;
 import com.jtangt.wm.po.ShopBean;
 import com.jtangt.wm.utils.HttpUtils;
@@ -124,16 +128,13 @@ public class ZhuYeFragment extends Fragment {
     };
 
     //店铺
-    public void getjson(){
+    public void getjson(Message_Post message_post,int what){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 String json = null;
                 try {
                     HttpUtils httpUtils = new HttpUtils();
-                    Message_Post message_post=new Message_Post();
-                    message_post.setType("shop_getAllShop");
-                    message_post.setMessage("{1111}");
                     json = httpUtils.getJsonContent(message_post);
                     //System.out.println(json);
                 } catch (Exception e) {
@@ -141,7 +142,7 @@ public class ZhuYeFragment extends Fragment {
                 }
                 Message msg = handler.obtainMessage();
                 msg.obj = json;
-                msg.what=1;
+                msg.what=what;
                 handler.sendMessage(msg);
             }
         }).start();
@@ -158,6 +159,7 @@ public class ZhuYeFragment extends Fragment {
         List<ShopBean> shopBeans= JSON.parseArray(json,ShopBean.class);
         for (ShopBean s :shopBeans) {
             HashMap<String,Object> map=new HashMap<>();
+            map.put("shop_id",s.getId());
             map.put("shop_icon",base64ToPicture.sendImage(s.getShopIconbase64()));
             //map.put("shop_icon",R.drawable.shop1);
             map.put("shop_name",s.getShopName());
@@ -186,9 +188,9 @@ public class ZhuYeFragment extends Fragment {
             arrayList.add(map);
         }
 
-        String from[]={"shop_icon","shop_name","sale_num","cost","adNotice","welfare1","welfare2","time"};
+        String from[]={"shop_id","shop_icon","shop_name","sale_num","cost","adNotice","welfare1","welfare2","time"};
         //"tv_shop_name","tv_sale_num","tv_cost","tv_adNotice","tv_welfare1","tv_welfare2","tv_time"
-        int to[]={R.id.iv_shop_icon,R.id.tv_shop_name,R.id.tv_sale_num,R.id.tv_cost,R.id.tv_adNotice,R.id.tv_welfare1,R.id.tv_welfare2,R.id.tv_time};
+        int to[]={R.id.ll_shop_id,R.id.iv_shop_icon,R.id.tv_shop_name,R.id.tv_sale_num,R.id.tv_cost,R.id.tv_adNotice,R.id.tv_welfare1,R.id.tv_welfare2,R.id.tv_time};
 
         SimpleAdapter simpleAdapter=new SimpleAdapter(getActivity(),arrayList,R.layout.yihang,from,to);
         simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
@@ -206,6 +208,16 @@ public class ZhuYeFragment extends Fragment {
         ScrollView sv = (ScrollView) view.findViewById(R.id.zhuye_scroll);
         sv.smoothScrollTo(0, 0);
         listView.setAdapter(simpleAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //System.out.println(((TextView)view.findViewById(R.id.ll_shop_id)).getText().toString());
+                Intent intent =new Intent(getActivity(), Shop_detail.class);
+                intent.putExtra("shop_id", ((TextView)view.findViewById(R.id.ll_shop_id)).getText().toString());
+                startActivity(intent);//启动Activity
+
+            }
+        });
 
 
     }
@@ -226,7 +238,12 @@ public class ZhuYeFragment extends Fragment {
         banner = view.findViewById(R.id.banner);
         initData();
         initView();
-        getjson();
+
+        Message_Post message_post=new Message_Post();
+        message_post.setType("shop_getAllShop");
+        message_post.setMessage("{1111}");
+        getjson(message_post,1);
+
         return view;
     }
 
