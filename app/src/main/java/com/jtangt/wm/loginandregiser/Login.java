@@ -2,7 +2,9 @@ package com.jtangt.wm.loginandregiser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -72,10 +74,12 @@ public class Login extends AppCompatActivity {
                     waitingDialog.dismiss();
                     if(msg.obj.equals("{}")){
                         System.out.println("登录失败");
-                        //TODO
+                        showtsDialog();
+
                         return;
                     }
                     setuser_data((String)msg.obj);
+                    finish();
                     break;
             }
 
@@ -105,6 +109,12 @@ public class Login extends AppCompatActivity {
         waitingDialog.setCancelable(false);
         waitingDialog.show();
     }
+    private void showtsDialog(){
+        new AlertDialog.Builder(Login.this,R.style.Theme_AppCompat_Light_Dialog_Alert)
+                .setTitle("提示")
+                .setMessage("账号或者密码错误")
+                .create().show();
+    }
 
     private void init(){
 
@@ -126,6 +136,7 @@ public class Login extends AppCompatActivity {
                     EditText account=findViewById(R.id.login_account);
                     EditText password=findViewById(R.id.login_password);
                     postData(account.getText().toString(),password.getText().toString());
+
                     break;
                 case R.id.login_reg:
                     startActivity(new Intent(Login.this,Register.class));

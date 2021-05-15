@@ -16,6 +16,7 @@ import com.jtangt.wm.loginandregiser.Login;
 import com.jtangt.wm.po.User;
 import com.jtangt.wm.ui.CircleImageView;
 import com.jtangt.wm.utils.DBDefine;
+import com.jtangt.wm.utils.base64ToPicture;
 import com.jtangt.wm.wode.gerenxinxi;
 import com.jtangt.wm.wode.guanyu;
 import com.jtangt.wm.wode.wodedizi;
@@ -24,6 +25,7 @@ import com.jtangt.wm.wode.wodeshoucang;
 
 public class WoDeFragment extends Fragment {
     private User user;
+    private View vi;
     public WoDeFragment() {
         // Required empty public constructor
     }
@@ -54,12 +56,16 @@ public class WoDeFragment extends Fragment {
 
         TextView teusername=v.findViewById(R.id.teuser_wode);
         TextView teid=v.findViewById(R.id.teid_wode);
+        CircleImageView circleImageView = v.findViewById(R.id.circleImageView);
 
         if(user!=null){
+            base64ToPicture base64ToPicture = new base64ToPicture();
             teusername.setText(user.getUsername());
             teid.setText("ID: "+user.getId());
+            circleImageView.setImageBitmap(base64ToPicture.sendImage(user.getPicturebase64()));
             return;
         }
+        circleImageView.setImageResource(R.mipmap.touxiang);
         teusername.setText("请先登录");
         teid.setText("");
 
@@ -70,6 +76,7 @@ public class WoDeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.tab_wode,container,false);
+        vi=view;
         ImageView imggrxx=view.findViewById(R.id.imggrxx);
         ImageView imgwddz=view.findViewById(R.id.wddz);
         ImageView imgwdsc=view.findViewById(R.id.wdsc);
@@ -89,6 +96,14 @@ public class WoDeFragment extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        user=getuser_id();
+        LoginCheck(vi);
+
     }
 
     View.OnClickListener clickListener=new View.OnClickListener() {

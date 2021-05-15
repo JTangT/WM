@@ -21,6 +21,7 @@ public class DBDefine {
     public static final String KEY_SEX="sex";
     public static final String KEY_TOKEN="token";
     public static final String KEY_STATS="stats";
+    public static final String KEY_PICTURE="picture";
 
     private SQLiteDatabase db;
     private final Context context;
@@ -60,19 +61,20 @@ public class DBDefine {
         newValues.put(KEY_SEX,user.getSex());
         newValues.put(KEY_TOKEN,user.getToken());
         newValues.put(KEY_STATS,user.getStats());
+        newValues.put(KEY_PICTURE,user.getPicturebase64());
 
         return db.insert(DB_TABLE, null, newValues);
     }
 
 
     public User[] queryAllData() {
-        Cursor results =  db.query(DB_TABLE, new String[] { KEY_ID, KEY_USERNAME, KEY_PASSWORD, KEY_PHONE,KEY_SEX,KEY_TOKEN,KEY_STATS},
+        Cursor results =  db.query(DB_TABLE, new String[] { KEY_ID, KEY_USERNAME, KEY_PASSWORD, KEY_PHONE,KEY_SEX,KEY_TOKEN,KEY_STATS,KEY_PICTURE},
                 null, null, null, null, null);
         return ConvertToStudent(results);
     }
 
     public void rmData(int id){
-        db.execSQL("delete from shop where id = "+id);
+        db.execSQL("delete from "+DB_TABLE+" where id = "+id);
     }
 
 //    public Student[] queryOneData(long id) {
@@ -96,6 +98,7 @@ public class DBDefine {
             users[i].setSex(cursor.getInt(cursor.getColumnIndex(KEY_SEX)));
             users[i].setToken(cursor.getString(cursor.getColumnIndex(KEY_TOKEN)));
             users[i].setStats(cursor.getInt(cursor.getColumnIndex(KEY_STATS)));
+            users[i].setPicturebase64(cursor.getString(cursor.getColumnIndex(KEY_PICTURE)));
             cursor.moveToNext();
         }
         return users;
@@ -110,7 +113,7 @@ public class DBDefine {
 
         private static final String DB_CREATE = "create table " +
                 DB_TABLE + " (" + KEY_ID + " integer primary key, " +
-                KEY_USERNAME+ " text not null, " + KEY_PASSWORD+ " text not null," + KEY_PHONE + " text not null,"+KEY_SEX+" integer,"+KEY_TOKEN+" text not null,"+KEY_STATS+" integer);";
+                KEY_USERNAME+ " text not null, " + KEY_PASSWORD+ " text not null," + KEY_PHONE + " text not null,"+KEY_SEX+" integer,"+KEY_TOKEN+" text not null,"+KEY_STATS+" integer,"+KEY_PICTURE+" text not null);";
 
 
         @Override

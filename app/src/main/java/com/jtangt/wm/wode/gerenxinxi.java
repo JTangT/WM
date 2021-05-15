@@ -17,10 +17,11 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class gerenxinxi extends Activity {
     ImageView re;
-
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,11 @@ public class gerenxinxi extends Activity {
         Button logout=findViewById(R.id.logout);
         logout.setOnClickListener(clickListener);
         //finish();
+        user=getuser();
+
+        TextView id_geren=findViewById(R.id.id_geren);
+        id_geren.setText(user.getId()+"");
+
 
     }
     View.OnClickListener clickListener =new View.OnClickListener() {
@@ -63,5 +69,20 @@ public class gerenxinxi extends Activity {
         //System.out.println("ads"+re);
         //TODO
         dbDefine.close();
+    }
+
+    private User getuser(){
+        User user;
+        DBDefine dbDefine=new DBDefine(this);
+        dbDefine.open();
+        User[] users=dbDefine.queryAllData();
+        dbDefine.close();
+        if(users!=null){
+            user=users[0];
+            return user;
+        }
+        return null;
+
+
     }
 }

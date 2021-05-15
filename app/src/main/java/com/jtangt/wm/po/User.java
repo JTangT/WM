@@ -8,6 +8,26 @@ public class User {
     private int sex;
     private String token;
     private int stats;
+    private int picture;
+    private String picturebase64;
+
+    public int getPicture() {
+        return picture;
+    }
+
+    public void setPicture(int picture) {
+        this.picture = picture;
+    }
+
+    public String getPicturebase64() {
+        return picturebase64;
+    }
+
+    public void setPicturebase64(String picturebase64) {
+        this.picturebase64 = picturebase64;
+    }
+
+
 
     public int getId() {
         return id;
