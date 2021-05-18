@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WM"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Shop_detail"></activity>
+        <activity android:name=".dingdan_quereng"></activity>
+        <activity android:name=".Shop_detail" />
         <activity android:name=".loginandregiser.Register" />
         <activity android:name=".loginandregiser.Login" />
         <activity android:name=".dingdai" />

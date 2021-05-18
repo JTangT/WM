@@ -2,9 +2,7 @@ package com.jtangt.wm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,14 +11,13 @@ import android.view.Window;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.jtangt.wm.adapter.LeftAdapter;
 import com.jtangt.wm.adapter.RightAdapter;
+import com.jtangt.wm.po.Gwc;
 import com.jtangt.wm.po.LeftBean;
 import com.jtangt.wm.po.Message_Post;
 import com.jtangt.wm.po.RightBean;
@@ -50,21 +47,6 @@ public class Shop_detail extends AppCompatActivity {
     private List<Gwc> gwcs;
 
 
-    class Gwc{
-        @Override
-        public String toString() {
-            return "Gwc{" +
-                    "id=" + id +
-                    ", num=" + num +
-                    ", price=" + price +
-                    '}';
-        }
-
-        public int id;
-        public int num;
-        public double price;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +67,16 @@ public class Shop_detail extends AppCompatActivity {
         //初始化控件
         lv_left = (ListView) findViewById(R.id.lv_left);
         lv_right = (StickyListHeadersListView) findViewById(R.id.lv_right);
+        TextView tv_go_to_pay=(TextView)findViewById(R.id.tv_go_to_pay);
+        tv_go_to_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(Shop_detail.this, dingdan_quereng.class);
+                intent.putExtra("shop_id", id);
+                intent.putExtra("gwcs",JSON.toJSONString(gwcs));
+                startActivity(intent);
+            }
+        });
     }
 
     public void postData(Message_Post message_post,int what){
@@ -232,6 +224,7 @@ public class Shop_detail extends AppCompatActivity {
                             gwc.id=i;
                             gwc.num=1;
                             gwc.price=price;
+                            gwc.name=shop_details.get((Integer)v.getTag()).getName();
                             gwcs.add(gwc);
                         }
 
@@ -282,21 +275,6 @@ public class Shop_detail extends AppCompatActivity {
                         break;
                     }
                 }
-
-//                ListView lstres = (ListView)findViewById(R.id.lv_left);// 结果列表
-//                for (int i = 0; i < lstres.getChildCount(); i++) {
-//                    RelativeLayout ll = (RelativeLayout)lstres.getChildAt(i);// 获得子级
-//                    TextView textView = (TextView) ll.findViewById(R.id.tv_title);// 从子级中获得控件
-//                    if(i==position) {
-//                        textView.setTextColor(Color.RED);
-//                        continue;
-//                    }
-//                    //System.out.println(i);
-//                    textView.setTextColor(Color.GRAY);
-//
-//                }
-
-//                Toast.makeText(MainActivity.this, "您选中了"+leftData.get(position).title, Toast.LENGTH_SHORT).show();
             }
         });
 

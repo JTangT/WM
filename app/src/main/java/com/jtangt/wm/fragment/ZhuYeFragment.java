@@ -51,26 +51,6 @@ public class ZhuYeFragment extends Fragment {
 
     //轮播图
     private void initData() {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                String json = null;
-//                try {
-//                    HttpUtils httpUtils = new HttpUtils();
-//                    Message_Post message_post=new Message_Post();
-//                    message_post.setType("shop/getAllShop");
-//                    message_post.setMessage("{}");
-//                    json = httpUtils.getJsonContent(message_post);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                Message msg = handler.obtainMessage();
-//                msg.obj = json;
-//                msg.what=2;
-//                handler.sendMessage(msg);
-//            }
-//        }).start();
-
         image.add(R.drawable.rbt1);
         image.add(R.drawable.rbt2);
         title.add("缤纷肯德基");
@@ -155,14 +135,11 @@ public class ZhuYeFragment extends Fragment {
     public void initlist(String json){
         ArrayList arrayList=new ArrayList();
         base64ToPicture base64ToPicture=new base64ToPicture();
-            //String pic ="1";
-        //String json="[{\"num\":1,\"0\":{\"id\":1,\"shopName\":\"啦啦啦\",\"saleNum\":120,\"offerprice\":10,\"startprice\":10,\"welfare1\":\"qwe\",\"welfare2\":\"asd\",\"adNotice\":\"qweasdzxc\",\"time\":2,\"shopIcon\":\""+pic+"\"}]";
         shopBeans= JSON.parseArray(json,ShopBean.class);
         for (ShopBean s :shopBeans) {
             HashMap<String,Object> map=new HashMap<>();
             map.put("shop_id",s.getId());
             map.put("shop_icon",base64ToPicture.sendImage(s.getShopIconbase64()));
-            //map.put("shop_icon",R.drawable.shop1);
             map.put("shop_name",s.getShopName());
             map.put("sale_num","月售："+s.getSaleNum());
             map.put("cost","起送从¥"+s.getStartprice()+" 配送¥"+s.getOfferprice());
