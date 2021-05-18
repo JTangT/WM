@@ -13,31 +13,64 @@
 
     <LinearLayout
         android:layout_toRightOf="@id/iv"
-        android:orientation="vertical"
-        android:layout_margin="4dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:layout_margin="4dp"
+            android:layout_width="0sp"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:text="洋芋粉炒腊肉"
-            android:textSize="20sp"
-            android:id="@+id/tv_right_title1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:text="洋芋粉炒腊肉"
+                android:textSize="20sp"
+                android:id="@+id/tv_right_title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/tv_right_title2"
-            android:text="洋芋粉炒腊肉"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_right_title2"
+                android:text="洋芋粉炒腊肉"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/tv_right_count"
-            android:text="月销售54份"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_right_count"
+                android:text="月销售54份"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:layout_weight="3"
+                android:id="@+id/dec_detail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/dec_detail"/>
+            <TextView
+                android:layout_weight="3"
+                android:gravity="center"
+                android:id="@+id/num_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"/>
+            <ImageView
+                android:layout_weight="3"
+                android:id="@+id/add_detail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/add_detail"/>
+        </LinearLayout>
 
     </LinearLayout>
 

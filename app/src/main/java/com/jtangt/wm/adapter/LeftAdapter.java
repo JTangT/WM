@@ -63,7 +63,10 @@ public class LeftAdapter extends BaseAdapter {
         //给左侧条目设置颜色
         if (currentLeftItem ==position){
             viewHolder.tv_title.setTextColor(Color.RED);
+        }else{
+            viewHolder.tv_title.setTextColor(Color.GRAY);
         }
+        //System.out.println(currentLeftItem+"---"+position);
         return convertView;
     }
 

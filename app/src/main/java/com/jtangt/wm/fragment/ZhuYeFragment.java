@@ -47,6 +47,7 @@ public class ZhuYeFragment extends Fragment {
     private List<Integer> image=new ArrayList<>();
     private List<String> title=new ArrayList<>();
     private View view;
+    List<ShopBean> shopBeans;
 
     //轮播图
     private void initData() {
@@ -152,11 +153,11 @@ public class ZhuYeFragment extends Fragment {
     }
 
     public void initlist(String json){
-        ArrayList arrayList=arrayList=new ArrayList();
+        ArrayList arrayList=new ArrayList();
         base64ToPicture base64ToPicture=new base64ToPicture();
             //String pic ="1";
         //String json="[{\"num\":1,\"0\":{\"id\":1,\"shopName\":\"啦啦啦\",\"saleNum\":120,\"offerprice\":10,\"startprice\":10,\"welfare1\":\"qwe\",\"welfare2\":\"asd\",\"adNotice\":\"qweasdzxc\",\"time\":2,\"shopIcon\":\""+pic+"\"}]";
-        List<ShopBean> shopBeans= JSON.parseArray(json,ShopBean.class);
+        shopBeans= JSON.parseArray(json,ShopBean.class);
         for (ShopBean s :shopBeans) {
             HashMap<String,Object> map=new HashMap<>();
             map.put("shop_id",s.getId());
@@ -211,9 +212,10 @@ public class ZhuYeFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //System.out.println(((TextView)view.findViewById(R.id.ll_shop_id)).getText().toString());
+                //System.out.println(id);
                 Intent intent =new Intent(getActivity(), Shop_detail.class);
                 intent.putExtra("shop_id", ((TextView)view.findViewById(R.id.ll_shop_id)).getText().toString());
+                //intent.putExtra("shop",JSON.toJSONString(shopBeans.get(new Long(id).intValue())));
                 startActivity(intent);//启动Activity
 
             }

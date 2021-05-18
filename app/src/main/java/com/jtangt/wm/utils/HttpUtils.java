@@ -29,7 +29,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpUtils {
-    static String url_path="http://192.168.1.129:10003/info";
+    static String url_path="http://192.168.2.239:10003/info";
 
     public HttpUtils(){
     }
