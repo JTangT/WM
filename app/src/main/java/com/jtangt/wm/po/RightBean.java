@@ -8,5 +8,6 @@ public class RightBean {
     public String picture;
     public int num;
     public String detail;
+    public int price;
 
 }

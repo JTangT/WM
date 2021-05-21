@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -125,7 +126,7 @@ public class Shop_detail extends AppCompatActivity {
                         rightBean.type=s.getType_name();
                         rightBean.typeId=s.getType();
                         rightBean.detail=s.getDetail();
-
+                        rightBean.price=s.getPrice();
                         rightData.add(rightBean);
                     }
                     initData();
@@ -157,6 +158,7 @@ public class Shop_detail extends AppCompatActivity {
 
     private void set_shop(){
         base64ToPicture base64ToPicture =new base64ToPicture();
+        ((LinearLayout)findViewById(R.id.shop_yihang)).setVisibility(View.INVISIBLE);
         ((ImageView)findViewById(R.id.iv_shop_icon)).setImageBitmap(base64ToPicture.sendImage(shopBean.getShopIconbase64()));
         ((TextView)findViewById(R.id.ll_shop_id)).setText(shopBean.getId()+"");
         ((TextView)findViewById(R.id.tv_shop_name)).setText(shopBean.getShopName());
@@ -180,6 +182,8 @@ public class Shop_detail extends AppCompatActivity {
         else
             ((TextView)findViewById(R.id.tv_welfare2)).setText("新用户减"+shopBean.getWelfare2()+"元");
         ((TextView)findViewById(R.id.tv_time)).setText("预计送达时间："+shopBean.getTime()+"分钟");
+
+        ((LinearLayout)findViewById(R.id.shop_yihang)).setVisibility(View.VISIBLE);
     }
 
 

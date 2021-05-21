@@ -103,6 +103,7 @@ public class RightAdapter extends BaseAdapter implements StickyListHeadersAdapte
             viewHolder.dec_detail=(ImageView)convertView.findViewById(R.id.dec_detail);
             viewHolder.add_detail=(ImageView)convertView.findViewById(R.id.add_detail);
             viewHolder.num_detail=(TextView)convertView.findViewById(R.id.num_detail);
+            viewHolder.price=(TextView)convertView.findViewById(R.id.tv_right_price);
 
             convertView.setTag(viewHolder);
         }else {
@@ -125,6 +126,8 @@ public class RightAdapter extends BaseAdapter implements StickyListHeadersAdapte
             }
         }
 
+        viewHolder.price.setText("￥ "+rightBean.price);
+
         return convertView;
     }
 
@@ -139,5 +142,6 @@ public class RightAdapter extends BaseAdapter implements StickyListHeadersAdapte
         ImageView dec_detail;
         ImageView add_detail;
         TextView num_detail;
+        TextView price;
     }
 }
