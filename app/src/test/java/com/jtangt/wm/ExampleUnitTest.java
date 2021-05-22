@@ -1,17 +1,6 @@
 package com.jtangt.wm;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
-
-import com.jtangt.wm.po.ShopBean;
-import com.jtangt.wm.utils.base64ToPicture;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.*;
 

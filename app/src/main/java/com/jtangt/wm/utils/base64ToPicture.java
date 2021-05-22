@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-public class base64ToPicture {
+public class Base64ToPicture {
     //解码
     public Bitmap sendImage(String imgAddress) {
 

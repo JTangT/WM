@@ -16,17 +16,15 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.alibaba.fastjson.JSON;
 import com.jtangt.wm.R;
-import com.jtangt.wm.po.Message_Post;
-import com.jtangt.wm.po.User;
-import com.jtangt.wm.ui.CircleImageView;
+import com.jtangt.wm.bean.Message_Post;
+import com.jtangt.wm.bean.User;
 import com.jtangt.wm.utils.HttpUtils;
-import com.jtangt.wm.utils.base64ToPicture;
+import com.jtangt.wm.utils.Base64ToPicture;
 
 import java.util.Map;
 
@@ -78,7 +76,7 @@ public class Register extends AppCompatActivity {
                     break;
                 case R.id.reg_confirm:
                     User user=new User();
-                    base64ToPicture base64ToPicture=new base64ToPicture();
+                    Base64ToPicture base64ToPicture=new Base64ToPicture();
                     reg_img.setDrawingCacheEnabled(true);
                     user.setPicturebase64(base64ToPicture.encodeImageToString(Bitmap.createBitmap(reg_img.getDrawingCache())));
                     reg_img.setDrawingCacheEnabled(false);

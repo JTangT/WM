@@ -13,8 +13,8 @@ import android.widget.LinearLayout;
 import androidx.fragment.app.FragmentActivity;
 
 import com.jtangt.wm.fragment.DaiNaFragment;
-import com.jtangt.wm.fragment.DingDaiFragment;
-import com.jtangt.wm.fragment.WoDeFragment;
+import com.jtangt.wm.fragment.OrderFragment;
+import com.jtangt.wm.fragment.MineFragment;
 import com.jtangt.wm.fragment.ZhuYeFragment;
 
 
@@ -87,13 +87,13 @@ public class MainActivity extends FragmentActivity {
                 case R.id.llDingdai:
                     //Toast.makeText(MainActivity.this,"3",Toast.LENGTH_SHORT).show();
                     imgDingdai.setImageResource(R.mipmap.dingdai_x);
-                    tabDingdai = new DingDaiFragment();
+                    tabDingdai = new OrderFragment();
                     transaction.replace(R.id.content,tabDingdai);
                     break;
                 case R.id.llWode:
                     //Toast.makeText(MainActivity.this,"4",Toast.LENGTH_SHORT).show();
                     imgWode.setImageResource(R.mipmap.wode_x);
-                    tabWode = new WoDeFragment();
+                    tabWode = new MineFragment();
                     transaction.replace(R.id.content,tabWode);
                     break;
             }

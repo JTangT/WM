@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import com.jtangt.wm.R;
 
-public class DingDaiFragment extends Fragment {
+public class OrderFragment extends Fragment {
 
-       public DingDaiFragment() {
+       public OrderFragment() {
         // Required empty public constructor
     }
 

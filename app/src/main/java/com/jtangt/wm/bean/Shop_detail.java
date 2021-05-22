@@ -1,4 +1,4 @@
-package com.jtangt.wm.po;
+package com.jtangt.wm.bean;
 
 public class Shop_detail {
     private int id;

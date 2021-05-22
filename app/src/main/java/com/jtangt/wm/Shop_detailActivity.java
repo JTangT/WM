@@ -14,27 +14,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.jtangt.wm.bean.User;
 import com.jtangt.wm.adapter.LeftAdapter;
 import com.jtangt.wm.adapter.RightAdapter;
-import com.jtangt.wm.po.Gwc;
-import com.jtangt.wm.po.LeftBean;
-import com.jtangt.wm.po.Message_Post;
-import com.jtangt.wm.po.RightBean;
-import com.jtangt.wm.po.ShopBean;
-import com.jtangt.wm.po.Shop_detail_type;
+import com.jtangt.wm.bean.Gwc;
+import com.jtangt.wm.bean.LeftBean;
+import com.jtangt.wm.bean.Message_Post;
+import com.jtangt.wm.bean.RightBean;
+import com.jtangt.wm.bean.ShopBean;
+import com.jtangt.wm.bean.Shop_detail_type;
+import com.jtangt.wm.loginandregiser.Login;
+import com.jtangt.wm.utils.DBDefine;
 import com.jtangt.wm.utils.HttpUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.jtangt.wm.utils.base64ToPicture;
+import com.jtangt.wm.utils.Base64ToPicture;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-public class Shop_detail extends AppCompatActivity {
+public class Shop_detailActivity extends AppCompatActivity {
     private ListView lv_left;
     private String id;
     private StickyListHeadersListView lv_right;
@@ -44,7 +48,7 @@ public class Shop_detail extends AppCompatActivity {
     private ShopBean shopBean;
     RightAdapter rightAdapter;
 
-    List<com.jtangt.wm.po.Shop_detail> shop_details;
+    List<com.jtangt.wm.bean.Shop_detail> shop_details;
     private List<Gwc> gwcs;
 
 
@@ -72,7 +76,22 @@ public class Shop_detail extends AppCompatActivity {
         tv_go_to_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(Shop_detail.this, dingdan_quereng.class);
+                DBDefine dbDefine=new DBDefine(Shop_detailActivity.this);
+                dbDefine.open();
+                User[] users=dbDefine.queryAllData();
+                dbDefine.close();
+                if(users==null||users.length==0){
+                    Toast.makeText(getApplicationContext(), "请先登录", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(Shop_detailActivity.this, Login.class);
+                    startActivity(intent);
+                    return;
+                }
+                if(gwcs.size()==0){
+                    Toast.makeText(getApplicationContext(), "请先选择商品", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Intent intent =new Intent(Shop_detailActivity.this, Order_comfireActivity.class);
                 intent.putExtra("shop_id", id);
                 intent.putExtra("gwcs",JSON.toJSONString(gwcs));
                 startActivity(intent);
@@ -108,7 +127,7 @@ public class Shop_detail extends AppCompatActivity {
                     //System.out.println((String)msg.obj);
                     Map<String,Object> map=JSON.parseObject((String)msg.obj);
                     List<Shop_detail_type>  shop_detail_types=JSON.parseArray(map.get("left").toString(),Shop_detail_type.class);
-                    shop_details=JSON.parseArray(map.get("right").toString(),com.jtangt.wm.po.Shop_detail.class);
+                    shop_details=JSON.parseArray(map.get("right").toString(),com.jtangt.wm.bean.Shop_detail.class);
                     leftData=new ArrayList<>();
                     rightData=new ArrayList<>();
                     for(Shop_detail_type s:shop_detail_types){
@@ -118,7 +137,7 @@ public class Shop_detail extends AppCompatActivity {
 
                         leftData.add(leftBean);
                     }
-                    for (com.jtangt.wm.po.Shop_detail s:shop_details){
+                    for (com.jtangt.wm.bean.Shop_detail s:shop_details){
                         RightBean rightBean=new RightBean();
                         rightBean.num=s.getNum();
                         rightBean.biaoti=s.getName();
@@ -157,7 +176,7 @@ public class Shop_detail extends AppCompatActivity {
 
 
     private void set_shop(){
-        base64ToPicture base64ToPicture =new base64ToPicture();
+        Base64ToPicture base64ToPicture =new Base64ToPicture();
         ((LinearLayout)findViewById(R.id.shop_yihang)).setVisibility(View.INVISIBLE);
         ((ImageView)findViewById(R.id.iv_shop_icon)).setImageBitmap(base64ToPicture.sendImage(shopBean.getShopIconbase64()));
         ((TextView)findViewById(R.id.ll_shop_id)).setText(shopBean.getId()+"");

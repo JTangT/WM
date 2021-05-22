@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.jtangt.wm.po.User;
+import com.jtangt.wm.bean.User;
 
 public class DBDefine {
     private static final String DB_NAME = "user.db";

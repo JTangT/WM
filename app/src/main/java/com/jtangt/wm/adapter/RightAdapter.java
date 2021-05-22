@@ -2,23 +2,19 @@ package com.jtangt.wm.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.jtangt.wm.po.LeftBean;
-import com.jtangt.wm.po.RightBean;
+import com.jtangt.wm.bean.LeftBean;
+import com.jtangt.wm.bean.RightBean;
 import com.jtangt.wm.R;
-import com.jtangt.wm.utils.base64ToPicture;
+import com.jtangt.wm.utils.Base64ToPicture;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
@@ -112,7 +108,7 @@ public class RightAdapter extends BaseAdapter implements StickyListHeadersAdapte
         RightBean rightBean = mRight.get(position);
         viewHolder.title1.setText(rightBean.biaoti);
         viewHolder.title2.setText(rightBean.detail);
-        viewHolder.image.setImageBitmap(new base64ToPicture().sendImage(rightBean.picture));
+        viewHolder.image.setImageBitmap(new Base64ToPicture().sendImage(rightBean.picture));
         viewHolder.count.setText("月销量"+rightBean.num+"份");
 
         viewHolder.dec_detail.setOnClickListener(clickListener);

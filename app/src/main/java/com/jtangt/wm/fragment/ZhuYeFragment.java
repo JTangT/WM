@@ -4,10 +4,8 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +16,13 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.jtangt.wm.R;
-import com.jtangt.wm.Shop_detail;
-import com.jtangt.wm.po.Message_Post;
-import com.jtangt.wm.po.ShopBean;
+import com.jtangt.wm.Shop_detailActivity;
+import com.jtangt.wm.bean.Message_Post;
+import com.jtangt.wm.bean.ShopBean;
 import com.jtangt.wm.utils.HttpUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -40,7 +37,7 @@ import java.util.Map;
 
 import android.os.Handler;
 
-import com.jtangt.wm.utils.base64ToPicture;
+import com.jtangt.wm.utils.Base64ToPicture;
 
 public class ZhuYeFragment extends Fragment {
     private Banner banner;
@@ -134,7 +131,7 @@ public class ZhuYeFragment extends Fragment {
 
     public void initlist(String json){
         ArrayList arrayList=new ArrayList();
-        base64ToPicture base64ToPicture=new base64ToPicture();
+        Base64ToPicture base64ToPicture=new Base64ToPicture();
         shopBeans= JSON.parseArray(json,ShopBean.class);
         for (ShopBean s :shopBeans) {
             HashMap<String,Object> map=new HashMap<>();
@@ -190,7 +187,7 @@ public class ZhuYeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //System.out.println(id);
-                Intent intent =new Intent(getActivity(), Shop_detail.class);
+                Intent intent =new Intent(getActivity(), Shop_detailActivity.class);
                 intent.putExtra("shop_id", ((TextView)view.findViewById(R.id.ll_shop_id)).getText().toString());
                 //intent.putExtra("shop",JSON.toJSONString(shopBeans.get(new Long(id).intValue())));
                 startActivity(intent);//启动Activity

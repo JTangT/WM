@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 
 import com.jtangt.wm.R;
-import com.jtangt.wm.po.LeftBean;
+import com.jtangt.wm.bean.LeftBean;
 
 import java.util.List;
 

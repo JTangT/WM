@@ -1,6 +1,4 @@
-package com.jtangt.wm.wode;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.jtangt.wm.mine;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,7 +7,7 @@ import android.widget.ImageView;
 
 import com.jtangt.wm.R;
 
-public class wodepinjia extends Activity {
+public class My_commentActivity extends Activity {
     ImageView re;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

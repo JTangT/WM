@@ -1,40 +1,31 @@
-package com.jtangt.wm.wode;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.jtangt.wm.mine;
 
 import com.alibaba.fastjson.JSON;
 import com.jtangt.wm.R;
-import com.jtangt.wm.Shop_detail;
-import com.jtangt.wm.po.Address;
-import com.jtangt.wm.po.Message_Post;
-import com.jtangt.wm.po.ShopBean;
-import com.jtangt.wm.po.User;
+import com.jtangt.wm.bean.Address;
+import com.jtangt.wm.bean.Message_Post;
+import com.jtangt.wm.bean.User;
 import com.jtangt.wm.utils.DBDefine;
 import com.jtangt.wm.utils.HttpUtils;
-import com.jtangt.wm.utils.base64ToPicture;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class wodedizi extends Activity {
+public class My_addressActivity extends Activity {
     ImageView re;
     User user;
     ListView dizhi_lv;

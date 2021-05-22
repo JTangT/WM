@@ -1,26 +1,9 @@
 package com.jtangt.wm.utils;
 
-import android.text.TextUtils;
-import android.util.Log;
-
-import com.alibaba.fastjson.JSON;
-import com.jtangt.wm.po.Message_Post;
+import com.jtangt.wm.bean.Message_Post;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;

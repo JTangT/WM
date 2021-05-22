@@ -15,17 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WM"
         android:usesCleartextTraffic="true">
-        <activity android:name=".dingdan_quereng"></activity>
-        <activity android:name=".Shop_detail" />
+        <activity android:name=".SettlementActivity"></activity>
+        <activity android:name=".Order_comfireActivity" />
+        <activity android:name=".Shop_detailActivity" />
         <activity android:name=".loginandregiser.Register" />
         <activity android:name=".loginandregiser.Login" />
-        <activity android:name=".dingdai" />
-        <activity android:name=".wode.guanyu" />
-        <activity android:name=".wode.wodepinjia" />
-        <activity android:name=".wode.wodeshoucang" />
-        <activity android:name=".wode.wodedizi" />
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".mine.AboutActivity" />
+        <activity android:name=".mine.My_commentActivity" />
+        <activity android:name=".mine.My_collectionActivity" />
+        <activity android:name=".mine.My_addressActivity" />
         <activity
-            android:name=".wode.gerenxinxi"
+            android:name=".mine.My_infoActivity"
             android:label="@string/title_activity_gerenxinxi"
             android:theme="@style/Theme.WM.NoActionBar" />
         <activity android:name=".MainActivity">

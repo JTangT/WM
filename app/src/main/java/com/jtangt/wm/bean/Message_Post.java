@@ -1,4 +1,4 @@
-package com.jtangt.wm.po;
+package com.jtangt.wm.bean;
 
 public class Message_Post {
     private String type;

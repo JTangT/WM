@@ -13,20 +13,20 @@ import androidx.annotation.Nullable;
 
 import com.jtangt.wm.R;
 import com.jtangt.wm.loginandregiser.Login;
-import com.jtangt.wm.po.User;
+import com.jtangt.wm.bean.User;
 import com.jtangt.wm.ui.CircleImageView;
 import com.jtangt.wm.utils.DBDefine;
-import com.jtangt.wm.utils.base64ToPicture;
-import com.jtangt.wm.wode.gerenxinxi;
-import com.jtangt.wm.wode.guanyu;
-import com.jtangt.wm.wode.wodedizi;
-import com.jtangt.wm.wode.wodepinjia;
-import com.jtangt.wm.wode.wodeshoucang;
+import com.jtangt.wm.utils.Base64ToPicture;
+import com.jtangt.wm.mine.My_infoActivity;
+import com.jtangt.wm.mine.AboutActivity;
+import com.jtangt.wm.mine.My_addressActivity;
+import com.jtangt.wm.mine.My_commentActivity;
+import com.jtangt.wm.mine.My_collectionActivity;
 
-public class WoDeFragment extends Fragment {
+public class MineFragment extends Fragment {
     private User user;
     private View vi;
-    public WoDeFragment() {
+    public MineFragment() {
         // Required empty public constructor
     }
     @Override
@@ -48,8 +48,6 @@ public class WoDeFragment extends Fragment {
             return user;
         }
         return null;
-
-
     }
 
     public void LoginCheck(View v){
@@ -59,7 +57,7 @@ public class WoDeFragment extends Fragment {
         CircleImageView circleImageView = v.findViewById(R.id.circleImageView);
 
         if(user!=null){
-            base64ToPicture base64ToPicture = new base64ToPicture();
+            Base64ToPicture base64ToPicture = new Base64ToPicture();
             teusername.setText(user.getUsername());
             teid.setText("ID: "+user.getId());
             circleImageView.setImageBitmap(base64ToPicture.sendImage(user.getPicturebase64()));
@@ -116,19 +114,19 @@ public class WoDeFragment extends Fragment {
 
             switch (v.getId()){
                 case R.id.imggrxx:
-                    startActivity(new Intent(getActivity(), gerenxinxi.class));
+                    startActivity(new Intent(getActivity(), My_infoActivity.class));
                     break;
                 case R.id.wddz:
-                    startActivity(new Intent(getActivity(), wodedizi.class));
+                    startActivity(new Intent(getActivity(), My_addressActivity.class));
                     break;
                 case R.id.wdsc:
-                    startActivity(new Intent(getActivity(), wodeshoucang.class));
+                    startActivity(new Intent(getActivity(), My_collectionActivity.class));
                     break;
                 case R.id.wdpj:
-                    startActivity(new Intent(getActivity(), wodepinjia.class));
+                    startActivity(new Intent(getActivity(), My_commentActivity.class));
                     break;
                 case R.id.gy:
-                    startActivity(new Intent(getActivity(), guanyu.class));
+                    startActivity(new Intent(getActivity(), AboutActivity.class));
                     break;
             }
         }

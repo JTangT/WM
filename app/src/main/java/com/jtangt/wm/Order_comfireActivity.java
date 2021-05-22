@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -16,21 +17,17 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.jtangt.wm.po.Gwc;
-import com.jtangt.wm.po.LeftBean;
-import com.jtangt.wm.po.Message_Post;
-import com.jtangt.wm.po.RightBean;
-import com.jtangt.wm.po.ShopBean;
-import com.jtangt.wm.po.Shop_detail_type;
+import com.jtangt.wm.bean.Gwc;
+import com.jtangt.wm.bean.Message_Post;
+import com.jtangt.wm.bean.ShopBean;
 import com.jtangt.wm.utils.HttpUtils;
-import com.jtangt.wm.utils.base64ToPicture;
+import com.jtangt.wm.utils.Base64ToPicture;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class dingdan_quereng extends AppCompatActivity {
+public class Order_comfireActivity extends AppCompatActivity {
     private  String id;
     private List<Gwc> gwcs;
     private ShopBean shopBean;
@@ -44,6 +41,18 @@ public class dingdan_quereng extends AppCompatActivity {
         gwcs= JSON.parseArray(intent.getStringExtra("gwcs"),Gwc.class);
         getData();
         set_listviewandAll();
+        TextView confirm=(TextView)findViewById(R.id.confirm);
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Order_comfireActivity.this,SettlementActivity.class);
+                intent.putExtra("shop_id",id);
+                intent.putExtra("gwcs",JSON.toJSONString(gwcs));
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
     private void set_listviewandAll(){
         ArrayList arrayList=new ArrayList();
@@ -53,7 +62,7 @@ public class dingdan_quereng extends AppCompatActivity {
             map.put("good_name",gwcs.get(i).name);
             map.put("good_num","X"+gwcs.get(i).num);
             map.put("good_money","￥"+(gwcs.get(i).price*gwcs.get(i).num));
-            System.out.println(gwcs.get(i).toString());
+            //System.out.println(gwcs.get(i).toString());
             sum+=gwcs.get(i).price*gwcs.get(i).num;
             arrayList.add(map);
         }
@@ -78,7 +87,7 @@ public class dingdan_quereng extends AppCompatActivity {
     private void setshopinof(){
         ImageView siv_shop_icon=findViewById(R.id.siv_shop_icon);
         TextView tv_shop_name=findViewById(R.id.tv_shop_name);
-        base64ToPicture base64ToPicture=new base64ToPicture();
+        Base64ToPicture base64ToPicture=new Base64ToPicture();
         siv_shop_icon.setImageBitmap(base64ToPicture.sendImage(shopBean.getShopIconbase64()));
         tv_shop_name.setText(shopBean.getShopName());
     }
