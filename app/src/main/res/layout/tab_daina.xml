@@ -25,24 +25,35 @@
         android:orientation="vertical"
         android:background="#ECEAEA">
         <EditText
+            android:id="@+id/daina_bianhao"
             android:layout_marginTop="50sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="订单编号"
             android:background="@drawable/yuanjiao"/>
         <EditText
+            android:id="@+id/daina_name"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="取件姓名"
+            android:background="@drawable/yuanjiao"/>
+        <EditText
+            android:id="@+id/daina_phone"
             android:layout_marginTop="10sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="取件手机号"
             android:background="@drawable/yuanjiao"/>
         <EditText
+            android:id="@+id/daina_address"
             android:layout_marginTop="10sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="地址选择"
             android:background="@drawable/yuanjiao"/>
         <Button
+            android:id="@+id/daina_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="提交"/>

@@ -70,11 +70,13 @@
         android:layout_height="wrap_content"
         android:gravity="right">
         <Button
+            android:id="@+id/again"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10sp"
             android:text="再来一单"/>
         <Button
+            android:id="@+id/comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10sp"

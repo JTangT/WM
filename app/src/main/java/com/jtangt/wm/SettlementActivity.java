@@ -2,6 +2,9 @@ package com.jtangt.wm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.jtangt.wm.bean.Gwc;
 import com.jtangt.wm.bean.Message_Post;
 import com.jtangt.wm.bean.User;
+import com.jtangt.wm.loginandregiser.Register;
 import com.jtangt.wm.utils.DBDefine;
 import com.jtangt.wm.utils.HttpUtils;
 
@@ -26,6 +30,7 @@ public class SettlementActivity extends AppCompatActivity {
     private String shop_id;
     private List<Gwc> gwcs;
     private User user;
+    private ProgressDialog waitingDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +47,40 @@ public class SettlementActivity extends AppCompatActivity {
         finish_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showWaitingDialog();
                 finshorder();
-                finish();
+
             }
         });
     }
+
+    private void showWaitingDialog() {
+        waitingDialog=
+                new ProgressDialog(SettlementActivity.this,R.style.Theme_AppCompat_Light_Dialog_Alert);
+        waitingDialog.setTitle("等待服务器返回");
+        waitingDialog.setMessage("等待中...");
+        waitingDialog.setIndeterminate(true);
+        waitingDialog.setCancelable(false);
+        waitingDialog.show();
+    }
+    private void showtsDialog(String msg){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("提示");
+        builder.setMessage(msg);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.show();
+    }
+
     private void finshorder(){
         Map<String,Object> map=new HashMap<>();
         map.put("user_id", user.getId());
@@ -77,6 +111,11 @@ public class SettlementActivity extends AppCompatActivity {
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
+                    waitingDialog.dismiss();
+
+                    Map<String,Object> map=JSON.parseObject(msg.obj.toString());
+                    showtsDialog(map.get("msg").toString());
+                    //finish();
                     break;
             }
 

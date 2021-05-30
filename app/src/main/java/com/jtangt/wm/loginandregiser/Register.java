@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -27,6 +28,8 @@ import com.jtangt.wm.utils.HttpUtils;
 import com.jtangt.wm.utils.Base64ToPicture;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
     private ImageView reg_img;
@@ -100,6 +103,15 @@ public class Register extends AppCompatActivity {
                         return;
                     }
 
+                    String pattern = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17[013678])|(18[0,5-9]))\\d{8}$";
+                    Pattern p = Pattern.compile(pattern);
+                    Matcher m = p.matcher(user.getPhone());
+                    boolean isMatch = m.matches();
+                    if(!isMatch){
+                        showtsDialog("手机号码格式错误");
+                        return;
+                    }
+
                     register(user);
 
 
@@ -112,6 +124,23 @@ public class Register extends AppCompatActivity {
             }
         }
     };
+    private void showtsDialog(String msg){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("提示");
+        builder.setMessage(msg);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.show();
+    }
 
     Handler handler = new Handler() {
         @Override
@@ -127,9 +156,6 @@ public class Register extends AppCompatActivity {
                     waitingDialog.dismiss();
                     Map<String,Object> map=JSON.parseObject((String)msg.obj);
                     showtsDialog(map.get("message").toString());
-                    if(map.get("message").toString().equals("success")){
-                        finish();
-                    }
                     break;
             }
 
@@ -167,12 +193,6 @@ public class Register extends AppCompatActivity {
         waitingDialog.setIndeterminate(true);
         waitingDialog.setCancelable(false);
         waitingDialog.show();
-    }
-    private void showtsDialog(String message){
-        new AlertDialog.Builder(Register.this,R.style.Theme_AppCompat_Light_Dialog_Alert)
-                .setTitle("提示")
-                .setMessage(message)
-                .create().show();
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

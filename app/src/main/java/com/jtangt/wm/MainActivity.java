@@ -24,6 +24,9 @@ public class MainActivity extends FragmentActivity {
     private Fragment tabZhuye,tabDaina,tabDingdai,tabWode;
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
